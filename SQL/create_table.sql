@@ -104,3 +104,5 @@ CREATE TABLE `app`.`service_log` (
   `http_res_info` text COMMENT 'HTTP Response 정보',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='서비스 히스토리';
+
+/*공통코드*/
