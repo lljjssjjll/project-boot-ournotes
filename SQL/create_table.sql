@@ -18,6 +18,7 @@ CREATE TABLE `app`.`user` (
   UNIQUE KEY `phone_UNIQUE` (`phone`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='사용자';
 
+/*권한*/
 DROP TABLE IF EXISTS `app`.`role`;
 CREATE TABLE `app`.`role` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Row ID',
@@ -30,6 +31,7 @@ CREATE TABLE `app`.`role` (
   UNIQUE KEY `name_UNIQUE` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='권한';
 
+/*사용자와 권한에 대한 관계 테이블*/
 DROP TABLE IF EXISTS `app`.`user_role`;
 CREATE TABLE `app`.`user_role` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Row ID',
