@@ -106,3 +106,15 @@ CREATE TABLE `app`.`service_log` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='서비스 히스토리';
 
 /*공통코드*/
+DROP TABLE IF EXISTS `com`.`code`;
+CREATE TABLE `com`.`code` (
+  `create_date` datetime NOT NULL COMMENT '생성일시',
+  `modify_date` datetime NOT NULL COMMENT '수정일시',
+  `flag` tinyint(1) NOT NULL COMMENT '논리 삭제 플래그 (1:활성, 0:삭제)',
+  
+  `group_code` varchar(50) NOT NULL COMMENT '그룹 코드',
+  `code_value` varchar(50) NOT NULL COMMENT '코드 값',
+  `mark_value` varchar(50) NOT NULL COMMENT '표기 값',
+  `lang_code` varchar(2) NOT NULL COMMENT '언어 코드',
+  PRIMARY KEY (`group_code`, `code_value`, `lang_code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='코드';
