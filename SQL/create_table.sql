@@ -27,8 +27,8 @@ CREATE TABLE `app`.`board` (
   `flag` tinyint(1) NOT NULL COMMENT '논리 삭제 플래그 (1:활성, 0:삭제)',
   
   `id_user` int(11) NOT NULL COMMENT '사용자 테이블 Row ID',
-  `type` varchar(50) NOT NULL COMMENT '유형 (FT/ST)',
-  `category` varchar(50) NOT NULL COMMENT '카테고리 (game/small-talk/info)',
+  `type` varchar(50) NOT NULL COMMENT '게시판 유형 (FT/ST)',
+  `category` varchar(50) NOT NULL COMMENT '게시판 카테고리 (game/small-talk/info)',
   `visibility` varchar(50) NOT NULL COMMENT '공개범위 (public/private)',
   `title` varchar(200) NOT NULL COMMENT '제목',
   `content` text NOT NULL COMMENT '내용',
