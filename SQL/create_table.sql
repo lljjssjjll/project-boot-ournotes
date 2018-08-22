@@ -18,6 +18,33 @@ CREATE TABLE `app`.`user` (
   UNIQUE KEY `phone_UNIQUE` (`phone`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='사용자';
 
+DROP TABLE IF EXISTS `app`.`role`;
+CREATE TABLE `app`.`role` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Row ID',
+  `create_date` datetime NOT NULL COMMENT '생성일시',
+  `modify_date` datetime NOT NULL COMMENT '수정일시',
+  `flag` tinyint(1) NOT NULL COMMENT '논리 삭제 플래그 (1:활성, 0:삭제)',
+  
+  `name` varchar(30) NOT NULL COMMENT '권한명',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name_UNIQUE` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='권한';
+
+DROP TABLE IF EXISTS `app`.`user_role`;
+CREATE TABLE `app`.`user_role` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Row ID',
+  `create_date` datetime NOT NULL COMMENT '생성일시',
+  `modify_date` datetime NOT NULL COMMENT '수정일시',
+  `flag` tinyint(1) NOT NULL COMMENT '논리 삭제 플래그 (1:활성, 0:삭제)',
+  
+  `id_user` int(11) NOT NULL COMMENT '사용자 테이블 Row ID',
+  `id_role` int(11) NOT NULL COMMENT '권한 테이블 Row ID',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name_UNIQUE` (`id_user`, `id_role`),
+  FOREIGN KEY (`id_user`) REFERENCES `app`.`user` (`id`),
+  FOREIGN KEY (`id_role`) REFERENCES `app`.`role` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='사용자와 권한에 대한 관계 테이블';
+
 /*게시판*/
 DROP TABLE IF EXISTS `app`.`board`;
 CREATE TABLE `app`.`board` (
