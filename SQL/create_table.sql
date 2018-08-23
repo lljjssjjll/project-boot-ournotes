@@ -16,7 +16,7 @@ CREATE TABLE `app`.`user` (
   UNIQUE KEY `email_UNIQUE` (`email`),
   UNIQUE KEY `nickname_UNIQUE` (`nickname`),
   UNIQUE KEY `phone_UNIQUE` (`phone`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='사용자';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_bin COMMENT='사용자';
 
 /*권한*/
 DROP TABLE IF EXISTS `app`.`role`;
@@ -29,7 +29,7 @@ CREATE TABLE `app`.`role` (
   `name` varchar(30) NOT NULL COMMENT '권한명',
   PRIMARY KEY (`id`),
   UNIQUE KEY `name_UNIQUE` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='권한';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_bin COMMENT='권한';
 
 /*사용자와 권한에 대한 관계 테이블*/
 DROP TABLE IF EXISTS `app`.`user_role`;
@@ -45,7 +45,7 @@ CREATE TABLE `app`.`user_role` (
   UNIQUE KEY `name_UNIQUE` (`id_user`, `id_role`),
   FOREIGN KEY (`id_user`) REFERENCES `app`.`user` (`id`),
   FOREIGN KEY (`id_role`) REFERENCES `app`.`role` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='사용자와 권한에 대한 관계 테이블';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_bin COMMENT='사용자와 권한에 대한 관계 테이블';
 
 /*게시판*/
 DROP TABLE IF EXISTS `app`.`board`;
@@ -65,7 +65,7 @@ CREATE TABLE `app`.`board` (
   `comments` int(10) NOT NULL COMMENT '댓글수',
   PRIMARY KEY (`id`),
   FOREIGN KEY (`id_user`) REFERENCES `app`.`user` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='게시판';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_bin COMMENT='게시판';
 
 /*댓글*/
 DROP TABLE IF EXISTS `app`.`comment`;
@@ -81,7 +81,7 @@ CREATE TABLE `app`.`comment` (
   PRIMARY KEY (`id`),
   FOREIGN KEY (`id_user`) REFERENCES `app`.`user` (`id`),
   FOREIGN KEY (`id_board`) REFERENCES `app`.`board` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='댓글';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_bin COMMENT='댓글';
 
 /*파일*/
 DROP TABLE IF EXISTS `app`.`file`;
@@ -100,7 +100,7 @@ CREATE TABLE `app`.`file` (
   `seq` tinyint(1) NOT NULL COMMENT '디스플레이 순서',
   PRIMARY KEY (`id`),
   UNIQUE KEY `filename_UNIQUE` (`filename`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='파일';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_bin COMMENT='파일';
 
 /*사용자 접근 히스토리*/
 DROP TABLE IF EXISTS `app`.`user_access_log`;
@@ -115,7 +115,7 @@ CREATE TABLE `app`.`user_access_log` (
   `source_ip` varchar(45) NOT NULL COMMENT '소스 아이피',
   `browser_info` text NOT NULL COMMENT '브라우저 정보',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='사용자 접근 히스토리';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_bin COMMENT='사용자 접근 히스토리';
 
 /*서비스 히스토리*/
 DROP TABLE IF EXISTS `app`.`service_log`;
@@ -132,7 +132,7 @@ CREATE TABLE `app`.`service_log` (
   `http_req_info` text COMMENT 'HTTP Request 정보',
   `http_res_info` text COMMENT 'HTTP Response 정보',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='서비스 히스토리';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_bin COMMENT='서비스 히스토리';
 
 /*공통코드*/
 DROP TABLE IF EXISTS `com`.`code`;
@@ -146,4 +146,4 @@ CREATE TABLE `com`.`code` (
   `mark_value` varchar(50) NOT NULL COMMENT '표기 값',
   `lang_code` varchar(2) NOT NULL COMMENT '언어 코드',
   PRIMARY KEY (`group_code`, `code_value`, `lang_code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='코드';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE utf8mb4_bin COMMENT='코드';
